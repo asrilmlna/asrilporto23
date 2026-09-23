@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --primary-blue: #0047FF;
+  --primary-blue-hover: #0037CC;
+  --bg-peach: #FCE2D2;
+  --bg-peach-light: #FFF1E8;
+  --bg-peach-deep: #F7D4BE;
+  --text-dark: #1E2029;
+  --text-muted: #555968;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background-color: #ffffff;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom utility for the exact blue */
+.text-electric-blue {
+  color: #0047FF;
+}
+
+.bg-electric-blue {
+  background-color: #0047FF;
+}
+
+.border-electric-blue {
+  border-color: #0047FF;
+}
+
+.bg-peach-canvas {
+  background-color: #FCE2D2;
+}
+
+/* Smooth transitions */
+button, a {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Footer outline typography matching Nur/ui reference */
+.footer-outline-text {
+  font-family: 'Space Grotesk', 'Outfit', sans-serif;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(56, 189, 248, 0.42);
+  letter-spacing: 0.05em;
+  line-height: 0.82;
+  user-select: none;
+  transition: -webkit-text-stroke 0.3s ease, filter 0.3s ease;
+}
+
+.footer-outline-text:hover {
+  -webkit-text-stroke: 1.8px rgba(56, 189, 248, 0.75);
+  filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.35));
+}

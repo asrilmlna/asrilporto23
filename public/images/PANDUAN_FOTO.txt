@@ -1,0 +1,25 @@
+=======================================================
+PANDUAN MENARUH GAMBAR PROFIL, PROYEK & SERTIFIKAT
+=======================================================
+
+Halo! Folder ini (c:\Aboutmee\public\images\) adalah tempat untuk menaruh file gambar Anda.
+
+1. FOTO PROFIL UTAMA (HERO SECTION):
+   - Taruh foto wajah Anda di sini dengan nama: `profile.jpg`
+
+2. GAMBAR PROYEK:
+   - Anda bisa menaruh tangkapan layar / preview proyek Anda di sini, misalnya:
+     - `project-1.jpg`, `project-2.jpg`, dst.
+   - Daftarkan nama file / URL gambar di file konfigurasi:
+     `c:\Aboutmee\src\data\profileData.js` (pada bagian `projects`)
+
+3. GAMBAR SERTIFIKAT:
+   - Anda bisa menaruh foto/scan sertifikat Anda di sini, misalnya:
+     - `cert-1.jpg`, `cert-2.jpg`, dst.
+   - Daftarkan nama file / URL gambar di file konfigurasi:
+     `c:\Aboutmee\src\data\profileData.js` (pada bagian `certificates`)
+
+=======================================================
+Semua data teks, judul, link, dan foto bisa Anda ubah di:
+👉 c:\Aboutmee\src\data\profileData.js
+=======================================================
