@@ -1,17 +1,37 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Award, Calendar, Maximize2, X, CheckCircle2 } from 'lucide-react'
 import { profileData } from '../../data/profileData'
+import { getAssetUrl } from '../../utils/imageHelper'
 
 const CertificatesSection = () => {
   const [selectedCert, setSelectedCert] = useState(null)
+  const sectionRef = useRef(null)
+
+  // Track scroll position for certificates section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  })
+
+  const watermarkX = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"])
+  const cardFloatY = useTransform(scrollYProgress, [0, 1], [20, -20])
 
   return (
     <section
+      ref={sectionRef}
       id="certificates-section"
-      className="w-full bg-[#FFF7F2] text-[#1E2029] py-20 md:py-24 px-6 md:px-12 lg:px-20 border-l-[18px] md:border-l-[28px] border-[#0047FF] relative overflow-hidden"
+      className="w-full bg-[#FFF7F2] text-[#1E2029] py-20 md:py-28 px-6 md:px-12 lg:px-20 relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      {/* Background Parallax Typography Watermark */}
+      <motion.div
+        style={{ x: watermarkX }}
+        className="absolute top-1/3 left-0 whitespace-nowrap pointer-events-none select-none z-0 opacity-[0.04] text-8xl md:text-9xl font-black uppercase tracking-widest text-[#0047FF]"
+      >
+        CERTIFICATES • CREDENTIALS • ACHIEVEMENTS • HONORS •
+      </motion.div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div className="mb-12 md:mb-14 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0047FF]/10 text-[#0047FF] text-xs font-bold tracking-wider uppercase">
@@ -36,11 +56,13 @@ const CertificatesSection = () => {
           {profileData.certificates.map((cert, idx) => (
             <motion.div
               key={cert.id || idx}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
-              whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl overflow-hidden border border-orange-100/90 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+              style={{ y: idx % 2 === 1 ? cardFloatY : 0 }}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.45, delay: idx * 0.08 }}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
+              className="bg-white rounded-2xl overflow-hidden border border-orange-100/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
               {/* Certificate Image Frame */}
               <div
@@ -49,11 +71,11 @@ const CertificatesSection = () => {
                 title="Klik untuk melihat sertifikat"
               >
                 <img
-                  src={cert.image}
+                  src={getAssetUrl(cert.image)}
                   alt={cert.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => {
-                    e.target.src = "/images/gallery-1.jpg"
+                    e.target.src = getAssetUrl('/images/gallery-1.jpg')
                   }}
                 />
 
@@ -134,7 +156,7 @@ const CertificatesSection = () => {
 
               <div className="max-h-[60vh] bg-black flex items-center justify-center">
                 <img
-                  src={selectedCert.image}
+                  src={getAssetUrl(selectedCert.image)}
                   alt={selectedCert.title}
                   className="max-h-[60vh] w-auto object-contain"
                 />

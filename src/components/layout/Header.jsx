@@ -65,16 +65,22 @@ const Header = () => {
       const scrollY = window.scrollY
       setIsScrolled(scrollY > 20)
 
-      // If near bottom of the document, activate contact
+      // When near the top, always keep 'hero' active
+      if (scrollY < 120) {
+        setActiveSection('hero')
+        return
+      }
+
+      // If near bottom of the document and user has actually scrolled down
       const windowHeight = window.innerHeight
       const docHeight = document.documentElement.scrollHeight
-      if (scrollY + windowHeight >= docHeight - 100) {
+      if (scrollY > 300 && scrollY + windowHeight >= docHeight - 80) {
         setActiveSection('contact-section')
         return
       }
 
       const sections = ['hero', 'about-section', 'projects-section', 'certificates-section', 'contact-section']
-      const scrollPosition = scrollY + 220
+      const scrollPosition = scrollY + 200
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i])

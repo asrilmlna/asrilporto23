@@ -73,7 +73,7 @@ const PhotoGallerySection = () => {
   return (
     <section
       id="gallery-section"
-      className="w-full bg-[#FCECE1] text-[#1E2029] py-20 md:py-28 px-6 md:px-12 lg:px-20 border-l-[18px] md:border-l-[28px] border-[#0047FF] relative"
+      className="w-full bg-[#FCECE1] text-[#1E2029] py-20 md:py-28 px-6 md:px-12 lg:px-20 relative"
     >
       <div className="max-w-6xl mx-auto">
         {/* Header with Title and Add Photo CTA */}

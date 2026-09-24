@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Calendar, MapPin, Mail, Phone, Download, Code, Palette, Zap } from 'lucide-react'
+import { profileData } from '../data/profileData'
+import { getAssetUrl } from '../utils/imageHelper'
 
 const About = () => {
   const { ref: introRef, inView: introInView } = useInView({ triggerOnce: true })
@@ -64,10 +66,15 @@ const About = () => {
               animate={introInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center">
-                <div className="text-white text-6xl font-bold">
-                  YN
-                </div>
+              <div className="aspect-square rounded-2xl overflow-hidden shadow-xl border border-gray-100 bg-gray-100 relative group">
+                <img
+                  src={getAssetUrl(profileData.profileImage)}
+                  alt={profileData.name}
+                  className="w-full h-full object-cover object-[center_20%] transition-transform duration-500 group-hover:scale-105"
+                  onError={(e) => {
+                    e.target.src = getAssetUrl('/images/gallery-1.jpg')
+                  }}
+                />
               </div>
             </motion.div>
 

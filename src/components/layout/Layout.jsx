@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom'
-import Header from './Header'
+import { Component as KineticNavbar } from '../ui/sterling-gate-kinetic-navigation'
 import Footer from './Footer'
 
 const Layout = ({ children }) => {
@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
 
   return (
     <div className="min-h-screen flex flex-col w-full">
-      <Header />
+      <KineticNavbar />
       <main className="flex-grow w-full">
         {children || <Outlet />}
       </main>

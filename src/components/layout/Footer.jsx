@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import {
   Facebook,
   Instagram,
@@ -18,6 +19,16 @@ import { profileData } from '../../data/profileData'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const footerRef = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: footerRef,
+    offset: ["start end", "end end"]
+  })
+
+  const glowScale = useTransform(scrollYProgress, [0, 1], [0.8, 1.15])
+  const textY = useTransform(scrollYProgress, [0, 1], [40, 0])
+  const textScale = useTransform(scrollYProgress, [0, 1], [0.94, 1])
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
@@ -30,12 +41,17 @@ const Footer = () => {
   ]
 
   return (
-    <footer id="contact-section" className="relative w-full bg-[#050814] text-slate-300 overflow-hidden border-t border-slate-800/60 transition-all selection:bg-sky-500/20 selection:text-sky-200">
-      {/* Subtle blue radial ambient glow at the bottom/center */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-40"
+    <footer
+      ref={footerRef}
+      id="contact-section"
+      className="relative w-full bg-[#050814] text-slate-300 overflow-hidden border-t border-slate-800/60 transition-all selection:bg-sky-500/20 selection:text-sky-200"
+    >
+      {/* Subtle blue radial ambient glow at the bottom/center with Parallax */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none opacity-40 origin-bottom"
         style={{
-          background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(14, 165, 233, 0.15) 0%, rgba(161, 171, 219, 0) 70%)'
+          scale: glowScale,
+          background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(57, 178, 235, 0.91) 0%, rgba(19, 46, 178, 0.78) 70%)'
         }}
       />
 
@@ -180,13 +196,14 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Giant Bottom Outline Typography: "ASRIL" */}
+      {/* Giant Bottom Outline Typography: "ASRIL" with Parallax Lift */}
       <div className="relative w-full -mt-6 sm:-mt-10 md:-mt-16 lg:-mt-22 pb-2 md:pb-6 flex justify-center items-center overflow-hidden pointer-events-none select-none">
-        <span
+        <motion.span
+          style={{ y: textY, scale: textScale }}
           className="footer-outline-text font-black uppercase text-[19vw] tracking-wider text-center pointer-events-auto cursor-default block"
         >
           ASRIL
-        </span>
+        </motion.span>
       </div>
     </footer>
   )
