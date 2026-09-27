@@ -83,22 +83,22 @@ const HeroRogers = () => {
     <div
       ref={heroRef}
       id="hero"
-      className="relative w-full bg-[#FCE2D2] text-[#0047FF] overflow-hidden min-h-[92vh] flex flex-col justify-between transition-all pt-20 sm:pt-24"
+      className="relative w-full bg-[#FCE2D2] text-[#0047FF] overflow-hidden min-h-0 md:min-h-[86vh] flex flex-col justify-start md:justify-between transition-all pt-14 sm:pt-18 md:pt-24 pb-7 sm:pb-9 md:pb-10"
     >
       {/* Background Parallax Typography Ribbon (Only FRONTEND DEVELOPER) */}
       <motion.div
         style={{ x: marqueeX, opacity: marqueeOpacity }}
-        className="absolute top-1/3 left-0 whitespace-nowrap pointer-events-none select-none z-0 text-6xl sm:text-7xl md:text-8xl font-black uppercase tracking-widest text-[#0047FF]"
+        className="absolute top-1/4 sm:top-1/3 left-0 whitespace-nowrap pointer-events-none select-none z-0 text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-widest text-[#0047FF]"
       >
         FRONTEND DEVELOPER • FRONTEND DEVELOPER • FRONTEND DEVELOPER • FRONTEND DEVELOPER • FRONTEND DEVELOPER •
       </motion.div>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 md:px-8 py-6 md:py-10 z-10">
+      <main className="flex-1 flex flex-col items-center justify-start md:justify-center px-4 md:px-8 py-2 md:py-6 z-10">
         {/* Title & Subtitle Container with Falling Text Animation & Parallax */}
         <motion.div
           style={{ y: textY, opacity: textOpacity }}
-          className="text-center max-w-4xl mx-auto space-y-3 md:space-y-4 mb-6 md:mb-10 cursor-pointer group"
+          className="text-center max-w-4xl mx-auto space-y-2 md:space-y-4 mb-4 sm:mb-6 md:mb-8 cursor-pointer group"
           onClick={() => setAnimationKey((prev) => prev + 1)}
           title="Klik untuk memutar ulang animasi falling text"
         >
@@ -109,25 +109,27 @@ const HeroRogers = () => {
             delay={0.15}
             stagger={0.035}
             triggerKey={animationKey}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#0047FF]"
-            style={{ fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif" }}
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight text-[#0047FF] leading-none"
+            style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
           />
 
-          <FallingText
-            as="p"
-            text={profileData.subtitle}
-            splitBy="words"
-            delay={0.8}
-            stagger={0.045}
-            triggerKey={animationKey}
-            className="text-base sm:text-lg md:text-xl font-light text-[#0047FF]/90 max-w-2xl mx-auto leading-relaxed px-4"
-          />
+          {profileData.subtitle && (
+            <FallingText
+              as="p"
+              text={profileData.subtitle}
+              splitBy="words"
+              delay={0.8}
+              stagger={0.045}
+              triggerKey={animationKey}
+              className="text-sm sm:text-lg md:text-xl font-light text-[#0047FF]/90 max-w-2xl mx-auto leading-relaxed px-4"
+            />
+          )}
         </motion.div>
 
         {/* Hero Photo with Tilted Polaroid Card, Corner Doodles, & Parallax Physics */}
         <motion.div
           style={{ y: photoY }}
-          className="relative mt-2 md:mt-4 mb-8"
+          className="relative mt-6 sm:mt-8 md:mt-12 mb-4 sm:mb-6 md:mb-8"
         >
           {/* Asterisk Doodle at Top Right with Parallax Spin & Lift */}
           <motion.div
@@ -135,7 +137,7 @@ const HeroRogers = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="absolute -top-10 -right-8 md:-top-12 md:-right-14 w-16 h-16 md:w-24 md:h-24 pointer-events-none z-20"
+            className="absolute -top-5 -right-5 sm:-top-7 sm:-right-7 md:-top-9 md:-right-12 w-11 h-11 sm:w-15 sm:h-15 md:w-20 md:h-20 pointer-events-none z-20"
           >
             <AsteriskDoodle className="w-full h-full drop-shadow-sm" />
           </motion.div>
@@ -146,7 +148,7 @@ const HeroRogers = () => {
             initial={{ scale: 0, rotate: 20 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="absolute -bottom-8 -left-10 md:-bottom-10 md:-left-16 w-20 h-16 md:w-28 md:h-20 pointer-events-none z-20"
+            className="absolute -bottom-6 -left-7 sm:-bottom-8 sm:-left-10 md:-bottom-10 md:-left-16 w-16 h-12 sm:w-20 sm:h-16 md:w-28 md:h-20 pointer-events-none z-20"
           >
             <EyeDoodle className="w-full h-full drop-shadow-sm" />
           </motion.div>
@@ -158,10 +160,10 @@ const HeroRogers = () => {
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ rotate: 0, scale: 1.03 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="relative bg-white p-2.5 sm:p-3.5 md:p-4 rounded-sm shadow-xl md:shadow-2xl"
+            className="relative bg-white p-2 sm:p-3 md:p-4 rounded-sm shadow-lg md:shadow-2xl"
           >
             {/* Inner photo container */}
-            <div className="w-[240px] sm:w-[280px] md:w-[320px] lg:w-[340px] h-[310px] sm:h-[360px] md:h-[410px] lg:h-[440px] overflow-hidden bg-gray-100 relative">
+            <div className="w-[200px] sm:w-[250px] md:w-[320px] lg:w-[340px] h-[260px] sm:h-[330px] md:h-[410px] lg:h-[440px] overflow-hidden bg-gray-100 relative">
               <img
                 src={photoSrc}
                 alt={profileData.name}
@@ -179,13 +181,13 @@ const HeroRogers = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="mt-4 text-center"
+          className="mt-3 sm:mt-4 md:mt-5 text-center"
         >
           <a
             href="#about-section"
-            className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#0047FF] hover:translate-y-1 transition-transform uppercase py-2 px-4 rounded-full hover:bg-white/40"
+            className="inline-flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-bold tracking-widest text-[#0047FF] hover:translate-y-1 transition-transform uppercase py-1.5 px-3 sm:py-2 sm:px-4 rounded-full hover:bg-white/40"
           >
-            <span>Selengkapnya Tentang Gua</span>
+            <span>Selengkapnya Tentang Saya</span>
             <span>↓</span>
           </a>
         </motion.div>

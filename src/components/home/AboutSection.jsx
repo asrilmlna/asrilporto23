@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Sparkles } from 'lucide-react'
+import { Sparkles, Download } from 'lucide-react'
 import { profileData } from '../../data/profileData'
+import { getAssetUrl } from '../../utils/imageHelper'
 
 // Individual Word component that reveals dynamically based on scroll progression
 const RevealWord = ({ children, progress, range, isHighlight }) => {
@@ -85,12 +86,12 @@ const AboutSection = () => {
     <section
       ref={sectionRef}
       id="about-section"
-      className="w-full bg-[#FFF7F2] text-[#1E2029] py-20 md:py-28 px-6 md:px-12 lg:px-20 relative overflow-hidden"
+      className="w-full bg-[#FFF7F2] text-[#1E2029] pt-10 pb-14 sm:pt-14 sm:pb-18 md:py-24 px-5 md:px-12 lg:px-20 relative overflow-hidden scroll-mt-6"
     >
       {/* Background Parallax Typography Watermark */}
       <motion.div
         style={{ x: watermarkX }}
-        className="absolute top-1/4 left-0 whitespace-nowrap pointer-events-none select-none z-0 opacity-[0.04] text-8xl md:text-9xl font-black uppercase tracking-widest text-[#0047FF]"
+        className="absolute top-1/4 left-0 whitespace-nowrap pointer-events-none select-none z-0 opacity-[0.04] text-7xl sm:text-8xl md:text-9xl font-black uppercase tracking-widest text-[#0047FF]"
       >
         ABOUT ME • STORY • PASSION • CRAFT • JOURNEY •
       </motion.div>
@@ -109,7 +110,7 @@ const AboutSection = () => {
         {/* Section Header with Parallax Entrance */}
         <motion.div
           style={{ y: headerY }}
-          className="text-center space-y-3 mb-12 md:mb-16"
+          className="text-center space-y-2 md:space-y-3 mb-6 md:mb-14"
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0047FF]/10 text-[#0047FF] text-xs font-bold tracking-wider uppercase">
             <Sparkles className="w-3.5 h-3.5" />
@@ -125,44 +126,57 @@ const AboutSection = () => {
               {profileData.shortName}
             </span>
           </h2>
-
-          {/* Scroll Word Reveal Headline */}
-          <div className="pt-2 max-w-2xl mx-auto">
-            <ScrollWordReveal
-              text={profileData.about.headline}
-              className="text-lg sm:text-xl md:text-2xl font-medium justify-center text-center text-gray-700"
-              highlightWords={["visual", "estetik", "solutif"]}
-              offset={["start 0.90", "start 0.50"]}
-            />
-          </div>
         </motion.div>
 
-        {/* Narrative Story Cards with Scroll Word Reveal */}
-        <div className="space-y-6 text-gray-700 leading-relaxed text-base md:text-lg">
+        {/* Narrative Story with Scroll Word Reveal - Text Only (No Border / Box) */}
+        <div className="space-y-6 md:space-y-8 max-w-3xl mx-auto">
           {profileData.about.paragraphs.map((para, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.12 }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="bg-white p-7 md:p-8 rounded-2xl border border-orange-100/80 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group"
             >
-              <div className="absolute top-0 left-0 w-1.5 h-full bg-[#0047FF]/10 group-hover:bg-[#0047FF] transition-colors" />
               <ScrollWordReveal
                 text={para}
-                className="text-base md:text-lg leading-relaxed"
+                className="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-800 font-normal"
                 highlightWords={
                   idx === 0
-                    ? ["mahasiswa", "kreatif", "identitas", "berkesan"]
-                    : ["antarmuka", "responsif", "berkembang", "tantangan"]
+                    ? ["Siswa", "SMKN", "CIOMAS", "PPLG", "teknologi", "motivasi"]
+                    : idx === 1
+                    ? ["keterampilan", "menganalisis", "website", "Administrasi", "Mendesain"]
+                    : ["tim", "teknis", "IT", "tantangan", "beradaptasi"]
                 }
                 offset={["start 0.88", "start 0.38"]}
               />
             </motion.div>
           ))}
         </div>
+
+        {/* Download CV Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-8 sm:mt-12 flex justify-center"
+        >
+          <a
+            href={
+              profileData.cvUrl?.startsWith('http')
+                ? profileData.cvUrl
+                : getAssetUrl(profileData.cvUrl || '/files/CV_Asril_Maulana.pdf')
+            }
+            download={!profileData.cvUrl?.startsWith('http') ? 'CV_Asril_Maulana.pdf' : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#0047FF] hover:bg-[#003ad1] text-white font-medium text-sm sm:text-base tracking-wide shadow-md shadow-[#0047FF]/20 hover:shadow-lg hover:shadow-[#0047FF]/30 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all cursor-pointer"
+          >
+            <Download className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
+            <span>Unduh CV</span>
+          </a>
+        </motion.div>
       </div>
     </section>
   )

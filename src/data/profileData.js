@@ -6,17 +6,20 @@ export const profileData = {
   name: "Asril Maulana",
   shortName: "Asril",
   greetingPrefix: "Hey! I'm",
-  subtitle: "A college student, lifelong learner and emerging life adventurer.",
-  
+
+
   // Foto Profil Utama
   profileImage: "/images/profile.jpg?v=2",
 
+  // File Curriculum Vitae (CV) - Bisa ditaruh di folder public/files/ atau link Google Drive
+  cvUrl: "/files/CV_Asril_Maulana.pdf",
+
   // Penjelasan Singkat & Detail Tentang Diri
   about: {
-    headline: "Menciptakan karya digital dengan perpaduan visual estetik dan kode yang solutif.",
     paragraphs: [
-      "Halo! Gua adalah seorang mahasiswa dan tech enthusiast yang senang menjelajahi dunia kreatif web. Bagi gua, website bukan cuma sekadar baris kode, tapi juga media ekspresi untuk menyampaikan identitas dan menghadirkan pengalaman visual yang berkesan.",
-      "Gua selalu bersemangat untuk belajar hal-hal baru — mulai dari interaksi mikro, desain antarmuka modern, hingga membangun aplikasi yang rapi dan responsif. Setiap tantangan adalah petualangan baru untuk berkembang."
+      "Saya adalah Siswa SMKN 1 CIOMAS Jurusan PPLG (Pengembangan Perangkat Lunak dan GIM). Saya memiliki motivasi tinggi untuk belajar dan berkembang di bidang teknologi.",
+      "Saya memiliki keterampilan dalam menganalisis sistem serta pembuatan website, dan Administrasi dalam sistem dan saya juga terampil dalam Mendesain sebuah website.",
+      "Saya juga mampu bekerja dalam tim serta mengembangkan kemampuan teknis di bidang IT dan saya juga siap untuk menghadapi tantangan yang kompleks dan siap beradaptasi."
     ]
   },
 
@@ -114,10 +117,12 @@ export const profileData = {
 
   // Kontak & Sosial
   contact: {
-    email: "asril.contact@example.com",
+    email: "asrilmaulna23@gmail.com",
+    phone: "085693928916",
+    location: "Bogor, Jawa Barat 16115",
     instagram: "@asril.creative",
     github: "github.com/asril",
     linkedin: "linkedin.com/in/asril",
-    status: "Open for Collaborations & Creative Projects"
+    status: "Siswa SMKN 1 CIOMAS (PPLG) - Siap Magang & Kolaborasi"
   }
 }

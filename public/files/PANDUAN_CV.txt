@@ -1,0 +1,19 @@
+=======================================================
+PANDUAN MENARUH FILE CURRICULUM VITAE (CV)
+=======================================================
+
+Folder ini (c:\Aboutmee\public\files\) adalah tempat untuk menaruh file CV Anda.
+
+1. MENARUH FILE CV PDF SENDIRI:
+   - Simpan file CV Anda berformat PDF di folder ini dengan nama:
+     `CV_Asril_Maulana.pdf`
+   - File ini akan otomatis diunduh saat pengunjung mengklik tombol "Unduh Curriculum Vitae (CV)" di bagian About Me.
+
+2. MENGGUNAKAN LINK GOOGLE DRIVE / LINK LAIN:
+   - Jika Anda lebih suka CV dibuka via link Google Drive atau resume online:
+   - Buka file konfigurasi:
+     `c:\Aboutmee\src\data\profileData.js`
+   - Ubah baris `cvUrl` dengan link Google Drive Anda, contoh:
+     cvUrl: "https://drive.google.com/file/d/your-cv-id/view?usp=sharing"
+
+=======================================================

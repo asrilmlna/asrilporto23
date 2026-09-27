@@ -10,29 +10,29 @@ const About = () => {
   const { ref: timelineRef, inView: timelineInView } = useInView({ triggerOnce: true })
 
   const skills = [
-    { category: 'Frontend', items: ['React', 'Vue.js', 'TypeScript', 'Tailwind CSS', 'Next.js'], icon: Code },
-    { category: 'Design', items: ['Figma', 'Adobe XD', 'Photoshop', 'Illustrator'], icon: Palette },
-    { category: 'Tools', items: ['Git', 'Docker', 'AWS', 'Vercel', 'Firebase'], icon: Zap }
+    { category: 'Frontend Development', items: ['Html', 'CSS', 'Java Script', 'React', 'TailwindCss'], icon: Code },
+    { category: 'Backend & Database', items: ['Php', 'Laravel', 'MySQL'], icon: Zap },
+    { category: 'Design', items: ['Figma'], icon: Palette }
   ]
 
   const timeline = [
     {
-      year: '2021 - Present',
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Company Inc.',
-      description: 'Leading development of enterprise web applications and mentoring junior developers.'
+      year: '2023 - Sekarang',
+      title: 'Siswa Jurusan PPLG',
+      company: 'SMKN 1 CIOMAS',
+      description: 'Mendalami Pengembangan Perangkat Lunak dan GIM, mencakup analisis kebutuhan sistem, administrasi sistem, dan pengembangan aplikasi berbasis web.'
     },
     {
-      year: '2019 - 2021',
-      title: 'Frontend Developer',
-      company: 'Digital Agency',
-      description: 'Built responsive websites and web applications for various clients using modern frameworks.'
+      year: '2024 - Sekarang',
+      title: 'Web Design & Frontend Exploration',
+      company: 'Proyek Pembelajaran & Portofolio',
+      description: 'Terampil merancang desain antarmuka website modern dan responsif serta mengimplementasikannya ke dalam kode yang rapi.'
     },
     {
-      year: '2018 - 2019',
-      title: 'Junior Developer',
-      company: 'Startup Hub',
-      description: 'Developed and maintained multiple client projects while learning best practices.'
+      year: '2024',
+      title: 'Kolaborasi Proyek & Tim',
+      company: 'Aktivitas Sekolah & Tim',
+      description: 'Bekerja dalam tim pengembang, meningkatkan soft skills komunikasi, pemecahan masalah teknis yang kompleks, dan adaptasi teknologi baru.'
     }
   ]
 
@@ -51,7 +51,7 @@ const About = () => {
               About Me
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Passionate developer with a love for creating beautiful, functional web experiences
+              Siswa SMKN 1 CIOMAS Jurusan PPLG yang bersemangat dalam analisis sistem, web development, dan desain antarmuka.
             </p>
           </motion.div>
         </div>
@@ -85,35 +85,34 @@ const About = () => {
               className="space-y-6"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-                Crafting Digital Excellence
+                Membangun Solusi Digital & Website Berkualitas
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                Hello! I'm a passionate full-stack developer with over 5 years of experience in creating 
-                exceptional web applications. My journey in tech started with a curiosity about how things 
-                work on the internet, and has evolved into a career focused on building user-centric solutions.
+                Saya adalah Siswa SMKN 1 CIOMAS Jurusan PPLG (Pengembangan Perangkat Lunak dan GIM). Saya memiliki motivasi tinggi untuk belajar dan berkembang di bidang teknologi.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                I specialize in React ecosystem, modern JavaScript frameworks, and creating responsive, 
-                accessible designs. When I'm not coding, you can find me exploring new technologies, 
-                contributing to open-source projects, or sharing knowledge through technical writing.
+                Saya memiliki keterampilan dalam menganalisis sistem serta pembuatan website, dan Administrasi dalam sistem dan saya juga terampil dalam Mendesain sebuah website.
+              </p>
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                Saya juga mampu bekerja dalam tim serta mengembangkan kemampuan teknis di bidang IT dan saya juga siap untuk menghadapi tantangan yang kompleks dan siap beradaptasi.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                 <div className="flex items-center space-x-3">
                   <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  <span className="text-gray-700 dark:text-gray-300">Born: January 1, 1995</span>
+                  <span className="text-gray-700 dark:text-gray-300">Pendidikan: SMKN 1 CIOMAS</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  <span className="text-gray-700 dark:text-gray-300">Location: Jakarta, Indonesia</span>
+                  <span className="text-gray-700 dark:text-gray-300">Lokasi: Bogor, Indonesia</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  <span className="text-gray-700 dark:text-gray-300">Email: hello@example.com</span>
+                  <span className="text-gray-700 dark:text-gray-300">Jurusan: PPLG</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  <span className="text-gray-700 dark:text-gray-300">Phone: +62 812-3456-7890</span>
+                  <Zap className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <span className="text-gray-700 dark:text-gray-300">Status: Siap Kolaborasi & Magang</span>
                 </div>
               </div>
 
@@ -123,7 +122,7 @@ const About = () => {
                 className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all flex items-center gap-2"
               >
                 <Download className="w-5 h-5" />
-                Download Resume
+                Download CV / Portofolio
               </motion.button>
             </motion.div>
           </div>
@@ -140,10 +139,10 @@ const About = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Skills & Expertise
+              Keahlian & Kemampuan Teknis
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Technologies and tools I work with to bring ideas to life
+              Teknologi, perancangan sistem, dan tools yang saya pelajari dan kembangkan
             </p>
           </motion.div>
 
@@ -188,10 +187,10 @@ const About = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Professional Journey
+              Perjalanan & Pengalaman
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              My career path and key milestones
+              Jejak langkah pembelajaran dan pengembangan diri di bidang IT
             </p>
           </motion.div>
 
