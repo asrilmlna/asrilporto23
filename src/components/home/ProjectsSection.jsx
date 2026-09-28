@@ -75,6 +75,10 @@ const ProjectsSection = () => {
                 <img
                   src={getAssetUrl(project.image)}
                   alt={project.title}
+                  width="600"
+                  height="338"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => {
                     e.target.src = getAssetUrl('/images/gallery-1.jpg')
@@ -174,6 +178,7 @@ const ProjectsSection = () => {
                 <img
                   src={getAssetUrl(activeImage.image)}
                   alt={activeImage.title}
+                  decoding="async"
                   className="max-h-[65vh] w-auto object-contain"
                 />
               </div>

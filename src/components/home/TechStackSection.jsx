@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Boxes } from 'lucide-react'
 
 // SVG Icons untuk Tech Stack dengan warna otentik masing-masing tools (Langsung aktif di Mobile, hover di Desktop)
@@ -170,9 +170,8 @@ const row2 = [
   }
 ]
 
-// Glassmorphic Tech Card Component dengan warna brand otentik (Row 1 & Row 2)
-// Di Mobile: Warna brand langsung aktif bersinar secara visual
-// Di Desktop: Default netral, berubah ke warna brand saat kursor diarahkan (hover)
+// High-performance Tech Card Component with authentic brand colors (Row 1 & Row 2)
+// Uses clean solid hardware-accelerated surfaces (no heavy backdrop-blur) for smooth 60-120fps scrolling
 const TechCard = ({ item }) => {
   const IconComponent = item.icon
   const brandColor = item.brandColor
@@ -181,7 +180,7 @@ const TechCard = ({ item }) => {
 
   return (
     <div
-      className="flex items-center gap-3.5 px-5 py-3 sm:px-6 sm:py-3.5 rounded-2xl bg-white/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.04)] md:hover:shadow-[0_14px_35px_var(--brand-shadow)] transition-all duration-300 md:hover:scale-105 active:scale-95 cursor-pointer flex-shrink-0 group"
+      className="flex items-center gap-3.5 px-5 py-3 sm:px-6 sm:py-3.5 rounded-2xl bg-white border border-orange-100/60 shadow-[0_4px_16px_rgba(0,0,0,0.04)] md:hover:shadow-[0_12px_28px_var(--brand-shadow)] transition-all duration-300 md:hover:scale-105 active:scale-95 cursor-pointer flex-shrink-0 group transform-gpu"
       style={{
         '--brand-color': brandColor,
         '--brand-bg': brandBg,
@@ -212,26 +211,16 @@ const TechCard = ({ item }) => {
 }
 
 const TechStackSection = () => {
-  const sectionRef = useRef(null)
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  })
-
-  const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1.25, 0.85])
-
   return (
     <section
-      ref={sectionRef}
       id="tech-stack-section"
       className="w-full bg-[#FFFBF7] py-16 md:py-24 relative overflow-hidden group select-none"
     >
-      {/* Background Soft Glow with Parallax Breathing */}
+      {/* Background Soft Glow (Clean CSS gradient without CPU-heavy scroll blur) */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#FFFBF7] via-[#FCE7F3]/40 to-[#F3E8FF]/30 pointer-events-none" />
-      <motion.div
-        style={{ scale: glowScale }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-40 bg-gradient-to-r from-pink-300/20 via-purple-300/25 to-blue-300/20 blur-3xl pointer-events-none"
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-40 bg-gradient-to-r from-pink-300/15 via-purple-300/20 to-blue-300/15 rounded-full pointer-events-none"
+        style={{ filter: 'blur(60px)' }}
       />
 
       {/* Section Header */}
@@ -251,19 +240,20 @@ const TechStackSection = () => {
       {/* 3D Perspective Marquee Container */}
       <div className="relative w-full overflow-hidden py-8 md:py-12 [perspective:1200px]">
         {/* Tilted Isometric Plane in 3D Space */}
-        <div className="flex flex-col gap-5 sm:gap-6 md:gap-7 [transform-style:preserve-3d] [transform:rotateX(16deg)_rotateZ(-4deg)_skewX(4deg)] origin-center">
+        <div className="flex flex-col gap-5 sm:gap-6 md:gap-7 [transform-style:preserve-3d] [transform:rotateX(14deg)_rotateZ(-3deg)_skewX(3deg)] origin-center">
           {/* Row 1: Leftward Scrolling Track */}
           <div className="flex overflow-hidden w-full select-none">
             <motion.div
-              className="flex items-center gap-5 sm:gap-6 flex-nowrap will-change-transform"
+              className="flex items-center gap-5 sm:gap-6 flex-nowrap will-change-transform transform-gpu"
               animate={{ x: ["0%", "-50%"] }}
               transition={{
                 ease: "linear",
-                duration: 26,
+                duration: 24,
                 repeat: Infinity
               }}
+              style={{ backfaceVisibility: "hidden" }}
             >
-              {[...row1, ...row1, ...row1, ...row1].map((item, idx) => (
+              {[...row1, ...row1, ...row1].map((item, idx) => (
                 <TechCard key={`row1-${idx}`} item={item} />
               ))}
             </motion.div>
@@ -272,15 +262,16 @@ const TechStackSection = () => {
           {/* Row 2: Rightward Scrolling Track (Counter-Directional) */}
           <div className="flex overflow-hidden w-full select-none">
             <motion.div
-              className="flex items-center gap-5 sm:gap-6 flex-nowrap will-change-transform"
+              className="flex items-center gap-5 sm:gap-6 flex-nowrap will-change-transform transform-gpu"
               animate={{ x: ["-50%", "0%"] }}
               transition={{
                 ease: "linear",
-                duration: 30,
+                duration: 28,
                 repeat: Infinity
               }}
+              style={{ backfaceVisibility: "hidden" }}
             >
-              {[...row2, ...row2, ...row2, ...row2].map((item, idx) => (
+              {[...row2, ...row2, ...row2].map((item, idx) => (
                 <TechCard key={`row2-${idx}`} item={item} />
               ))}
             </motion.div>

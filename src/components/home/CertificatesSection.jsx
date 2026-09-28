@@ -73,6 +73,10 @@ const CertificatesSection = () => {
                 <img
                   src={getAssetUrl(cert.image)}
                   alt={cert.title}
+                  width="600"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => {
                     e.target.src = getAssetUrl('/images/gallery-1.jpg')
@@ -158,6 +162,7 @@ const CertificatesSection = () => {
                 <img
                   src={getAssetUrl(selectedCert.image)}
                   alt={selectedCert.title}
+                  decoding="async"
                   className="max-h-[60vh] w-auto object-contain"
                 />
               </div>

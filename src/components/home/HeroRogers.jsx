@@ -88,7 +88,7 @@ const HeroRogers = () => {
       {/* Background Parallax Typography Ribbon (Only FRONTEND DEVELOPER) */}
       <motion.div
         style={{ x: marqueeX, opacity: marqueeOpacity }}
-        className="absolute top-1/4 sm:top-1/3 left-0 whitespace-nowrap pointer-events-none select-none z-0 text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-widest text-[#0047FF]"
+        className="absolute top-1/4 sm:top-1/3 left-0 whitespace-nowrap pointer-events-none select-none z-0 text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-widest text-[#0047FF] will-change-transform gpu-layer"
       >
         FRONTEND DEVELOPER • FRONTEND DEVELOPER • FRONTEND DEVELOPER • FRONTEND DEVELOPER • FRONTEND DEVELOPER •
       </motion.div>
@@ -98,7 +98,7 @@ const HeroRogers = () => {
         {/* Title & Subtitle Container with Falling Text Animation & Parallax */}
         <motion.div
           style={{ y: textY, opacity: textOpacity }}
-          className="text-center max-w-4xl mx-auto space-y-2 md:space-y-4 mb-4 sm:mb-6 md:mb-8 cursor-pointer group"
+          className="text-center max-w-4xl mx-auto space-y-2 md:space-y-4 mb-4 sm:mb-6 md:mb-8 cursor-pointer group will-change-transform"
           onClick={() => setAnimationKey((prev) => prev + 1)}
           title="Klik untuk memutar ulang animasi falling text"
         >
@@ -129,7 +129,7 @@ const HeroRogers = () => {
         {/* Hero Photo with Tilted Polaroid Card, Corner Doodles, & Parallax Physics */}
         <motion.div
           style={{ y: photoY }}
-          className="relative mt-6 sm:mt-8 md:mt-12 mb-4 sm:mb-6 md:mb-8"
+          className="relative mt-6 sm:mt-8 md:mt-12 mb-4 sm:mb-6 md:mb-8 will-change-transform"
         >
           {/* Asterisk Doodle at Top Right with Parallax Spin & Lift */}
           <motion.div
@@ -137,7 +137,7 @@ const HeroRogers = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="absolute -top-5 -right-5 sm:-top-7 sm:-right-7 md:-top-9 md:-right-12 w-11 h-11 sm:w-15 sm:h-15 md:w-20 md:h-20 pointer-events-none z-20"
+            className="absolute -top-5 -right-5 sm:-top-7 sm:-right-7 md:-top-9 md:-right-12 w-11 h-11 sm:w-15 sm:h-15 md:w-20 md:h-20 pointer-events-none z-20 will-change-transform"
           >
             <AsteriskDoodle className="w-full h-full drop-shadow-sm" />
           </motion.div>
@@ -148,7 +148,7 @@ const HeroRogers = () => {
             initial={{ scale: 0, rotate: 20 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="absolute -bottom-6 -left-7 sm:-bottom-8 sm:-left-10 md:-bottom-10 md:-left-16 w-16 h-12 sm:w-20 sm:h-16 md:w-28 md:h-20 pointer-events-none z-20"
+            className="absolute -bottom-6 -left-7 sm:-bottom-8 sm:-left-10 md:-bottom-10 md:-left-16 w-16 h-12 sm:w-20 sm:h-16 md:w-28 md:h-20 pointer-events-none z-20 will-change-transform"
           >
             <EyeDoodle className="w-full h-full drop-shadow-sm" />
           </motion.div>
@@ -160,13 +160,17 @@ const HeroRogers = () => {
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ rotate: 0, scale: 1.03 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="relative bg-white p-2 sm:p-3 md:p-4 rounded-sm shadow-lg md:shadow-2xl"
+            className="relative bg-white p-2 sm:p-3 md:p-4 rounded-sm shadow-lg md:shadow-2xl will-change-transform transform-gpu"
           >
             {/* Inner photo container */}
             <div className="w-[200px] sm:w-[250px] md:w-[320px] lg:w-[340px] h-[260px] sm:h-[330px] md:h-[410px] lg:h-[440px] overflow-hidden bg-gray-100 relative">
               <img
                 src={photoSrc}
                 alt={profileData.name}
+                width="340"
+                height="440"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover object-[center_22%] transition-transform duration-500 hover:scale-105"
                 onError={(e) => {
                   e.target.src = getAssetUrl('/images/gallery-1.jpg')
